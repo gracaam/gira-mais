@@ -1,6 +1,6 @@
 {
 	"appId": "dev.tteles.gira",
-	"appName": "Gira+",
+	"appName": "Gira-",
 	"webDir": "build",
 	"plugins": {
 		"SplashScreen": {

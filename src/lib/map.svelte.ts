@@ -389,12 +389,16 @@ export async function loadImages(map: maplibregl.Map) {
 		const imageWithoutNumber = context.getImageData(0, 0, img.width, img.height);
 		canvas.width = img.width;
 		canvas.height = img.height;
-		context.font = 'bold 44px Inter';
+		// Bike pins have no symbol, so the count fills the circle (centre y = 59.5)
+		const bigNumber = name.startsWith('bike');
 		context.textAlign = 'center';
 		context.fillStyle = color;
 		for (let i = 0; i < 50; i++) {
 			context.putImageData(imageWithoutNumber, 0, 0);
-			context.fillText(i.toString(), img.width / 2, img.height / 1.65);
+			// Two digits get a smaller font so they stay inside the circle; baseline = centre + half the cap height
+			const size = bigNumber ? (i < 10 ? 72 : 60) : 44;
+			context.font = `bold ${size}px Inter`;
+			context.fillText(i.toString(), img.width / 2, bigNumber ? 59.5 + size * 0.364 : img.height / 1.65);
 			const newImg = context.getImageData(0, 0, img.width, img.height);
 			addOrReplace(`${name}-${i}`, newImg);
 		}

@@ -238,8 +238,8 @@ const translations = {
 		pt: 'SAIR',
 	},
 	welcome_message: {
-		en: 'Welcome to Gira+',
-		pt: 'Bem-vindo à Gira+',
+		en: 'Welcome to Gira-',
+		pt: 'Bem-vindo à Gira-',
 	},
 	email_label: {
 		en: 'Email',
@@ -506,6 +506,22 @@ const translations = {
 		en: 'Show a warning when a new version of the app is available',
 		pt: 'Mostrar um aviso quando uma nova versão da aplicação estiver disponível',
 	},
+	favorite_add_label: {
+		en: 'Add to favourites',
+		pt: 'Adicionar aos favoritos',
+	},
+	favorite_remove_label: {
+		en: 'Remove from favourites',
+		pt: 'Remover dos favoritos',
+	},
+	favorite_alert_bikes: {
+		en: 'Bikes are available again',
+		pt: 'Já há bicicletas disponíveis',
+	},
+	favorite_alert_docks: {
+		en: 'Docks are free again',
+		pt: 'Já há docas livres',
+	},
 	marked_unavailable_bikes_one: {
 		en: '1 of these bikes is marked as unavailable by the system, but can still be unlocked in this app.',
 		pt: '1 destas bicicletas está indisponível no sistema, mas pode ser desbloqueada nesta aplicação.',
@@ -527,8 +543,8 @@ const translations = {
 		pt: 'Antes de continuar',
 	},
 	service_warning_message: {
-		en: 'Gira+ is an unofficial app and is not affiliated with EMEL. We can\'t help with problems related to the GIRA service itself, such as trips that won\'t end, charges, account issues, or bike/dock maintenance.\nFor those, please contact EMEL via {{email}}.\n\nOnly continue if your message is about this app.',
-		pt: 'A Gira+ é uma aplicação não oficial e não está afiliada à EMEL. Não podemos ajudar com problemas relacionados com o serviço GIRA em si, como viagens que não terminam, cobranças, problemas de conta ou manutenção de bicicletas ou docas.\nPara esses casos, contacte a EMEL via {{email}}.\n\nContinue apenas se a sua mensagem for sobre esta aplicação.',
+		en: 'Gira- is an unofficial app and is not affiliated with EMEL. We can\'t help with problems related to the GIRA service itself, such as trips that won\'t end, charges, account issues, or bike/dock maintenance.\nFor those, please contact EMEL via {{email}}.\n\nOnly continue if your message is about this app.',
+		pt: 'A Gira- é uma aplicação não oficial e não está afiliada à EMEL. Não podemos ajudar com problemas relacionados com o serviço GIRA em si, como viagens que não terminam, cobranças, problemas de conta ou manutenção de bicicletas ou docas.\nPara esses casos, contacte a EMEL via {{email}}.\n\nContinue apenas se a sua mensagem for sobre esta aplicação.',
 	},
 	service_warning_continue: {
 		en: 'Continue anyway',

@@ -17,6 +17,7 @@
 	import { refreshTripStatus } from '$lib/trip';
 	import { ScreenOrientation } from '@capacitor/screen-orientation';
 	import { loadSettings } from '$lib/settings';
+	import { loadFavorites, startFavoriteAlerts } from '$lib/favorites.svelte';
 	import { getLocale } from '$lib/translations';
 	import { reportAppUsageEvent } from '$lib/gira-mais-api/gira-mais-api';
 	import { restartPositionWatch, watchPosition } from '$lib/location';
@@ -63,6 +64,8 @@
 		const stopDebugControls = import.meta.env.DEV ? startDebugControls() : undefined;
 		loadUserCreds();
 		loadSettings().then(() => {
+			loadFavorites();
+			startFavoriteAlerts();
 			reportAppUsageEvent();
 			appSettings.subscribe(() => {
 				document.documentElement.lang = getLocale();

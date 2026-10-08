@@ -50,10 +50,10 @@ async function updateAppId(dev = false) {
 		let content = await fs.readFile(file, 'utf8');
 		if (dev) {
 			content = content.replaceAll(/(?<!namespace ")dev\.tteles\.gira(?!\.dev)/g, 'dev.tteles.gira.dev');
-			content = content.replaceAll(/Gira\+(?! Dev)/g, 'Gira+ Dev');
+			content = content.replaceAll(/Gira-(?! Dev)/g, 'Gira- Dev');
 		} else {
 			content = content.replaceAll(/(?<!namespace ")dev\.tteles\.gira\.dev/g, 'dev.tteles.gira');
-			content = content.replaceAll('Gira+ Dev', 'Gira+');
+			content = content.replaceAll('Gira- Dev', 'Gira-');
 		}
 		await fs.writeFile(file, content, 'utf8');
 	}

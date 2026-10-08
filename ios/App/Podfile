@@ -22,7 +22,6 @@ def capacitor_pods
   pod 'CapacitorPreferences', :path => '../../node_modules/@capacitor/preferences'
   pod 'CapacitorScreenOrientation', :path => '../../node_modules/@capacitor/screen-orientation'
   pod 'CapacitorStatusBar', :path => '../../node_modules/@capacitor/status-bar'
-  pod 'CapacitorToast', :path => '../../node_modules/@capacitor/toast'
   pod 'MauricewegnerCapacitorNavigationBar', :path => '../../node_modules/@mauricewegner/capacitor-navigation-bar'
   pod 'CapacitorPluginSafeArea', :path => '../../node_modules/capacitor-plugin-safe-area'
 end

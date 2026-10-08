@@ -65,9 +65,12 @@
 	}
 
 	let hasRating = $derived(rating !== undefined && rating !== null);
+	// Only the worst two ratings get a colour; the rest stay in the neutral label colour.
+	const RATING_COLORS: Record<number, string> = { 1: '#E53935', 3: '#F5B800' };
+	let ratingColor = $derived(rating ? RATING_COLORS[rating] : undefined);
 	// Bikes the system marks unavailable still unlock; greying them out sets them apart without hiding them.
 	let marked = $derived(unlock?.source === 'hidden');
-	let accent = $derived(marked ? 'text-label' : 'text-primary');
+	let accent = $derived(marked && !ratingColor ? 'text-label' : 'text-primary');
 	/** At or below this charge the battery badge turns to the warning colour, where its icon already shows empty. */
 	const LOW_BATTERY_PERCENT = 20;
 
@@ -110,7 +113,7 @@
 	}
 </script>
 
-<div bind:this={slider} class="flex items-center justify-center w-full min-h-[70px] relative overflow-hidden rounded-2xl" style:box-shadow="0px 0px 12px 0px var(--color-shadow)" >
+<div bind:this={slider} class="flex items-center justify-center w-full min-h-[70px] relative overflow-hidden rounded-2xl" style:box-shadow="0px 0px 12px 0px var(--color-shadow)" style:--color-primary={ratingColor}>
 	<div class="absolute flex {pos.current < 0 ? 'flex-row-reverse' : ''} w-[calc(100%-1px)] h-[calc(100%-1px)] items-center p-4 bg-primary rounded-2xl" style:box-shadow="0px 0px 12px 0px var(--color-shadow)">
 		{#if !waiting}
 			<div transition:fade={{ duration: 150 }}>
@@ -142,7 +145,7 @@
 		<div class="relative h-[42px] min-w-0 grow overflow-hidden">
 			<div class="absolute left-0 right-0 text-base font-bold {accent} leading-tight transition-all duration-150 ease-out {hasRating ? 'top-0 translate-y-[0px]' : 'top-1/2 -translate-y-1/2'}">{id}</div>
 			{#if hasRating}
-				<div class="absolute bottom-0 left-0 right-0 flex h-4 items-center gap-1 text-label" transition:fly={{ y: -4, duration: 150, opacity: 0 }}>
+				<div class="absolute bottom-0 left-0 right-0 flex h-4 items-center gap-1 text-label" style:color={ratingColor} transition:fly={{ y: -4, duration: 150, opacity: 0 }}>
 					{#if rating === 1}
 						<IconMoodWrrr size={18} stroke={2} />
 					{:else if rating === 2}
@@ -159,7 +162,7 @@
 			{/if}
 		</div>
 		{#if type === 'electric' && battery != null}
-			<div class="flex items-center h-6 px-[6px] {battery <= LOW_BATTERY_PERCENT ? 'bg-warning' : marked ? 'bg-label' : 'bg-primary'} rounded-md gap-1">
+			<div class="flex items-center h-6 px-[6px] {battery <= LOW_BATTERY_PERCENT ? 'bg-warning' : marked && !ratingColor ? 'bg-label' : 'bg-primary'} rounded-md gap-1">
 				<span class="text-xs font-bold text-background">{battery}%</span>
 				{#if battery <= LOW_BATTERY_PERCENT}
 					<IconBattery size={25} stroke={1.7} class="text-background -m-1" />

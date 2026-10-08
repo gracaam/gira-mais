@@ -8,6 +8,9 @@
 	import type { AvailableBike } from '$lib/gira-api/models';
 	import { currentPos } from '$lib/location';
 	import { selectedStation, stations } from '$lib/map.svelte';
+	import { favorites, toggleFavorite } from '$lib/favorites.svelte';
+	import IconStar from '@tabler/icons-svelte/icons/star';
+	import IconStarFilled from '@tabler/icons-svelte/icons/star-filled';
 	import { t } from '$lib/translations';
 	import type { UnlockSubject } from '$lib/unlock-reporting';
 	import { safeInsets } from '$lib/ui.svelte';
@@ -218,6 +221,13 @@
 					<span class="font-bold text-sm text-info">{$t('station_label')} {code}</span>
 					{#if distance}
 						<span transition:fade={{ duration: 150 }} class="font-semibold bg-background-secondary text-xs text-info px-1 py-[1px] rounded">{formatDistance(distance)}</span>
+					{/if}
+					{#if station}
+						{@const serial = station.serialNumber}
+						{@const starred = $favorites.includes(serial)}
+						<button type="button" class="-my-2 p-2 {starred ? 'text-primary' : 'text-label'}" aria-label={$t(starred ? 'favorite_remove_label' : 'favorite_add_label')} onclick={() => toggleFavorite(serial)}>
+							{#if starred}<IconStarFilled size={20} />{:else}<IconStar size={20} stroke={2} />{/if}
+						</button>
 					{/if}
 				</div>
 				<span class="text-xs font-medium text-label leading-none mt-[2px]">{name}</span>

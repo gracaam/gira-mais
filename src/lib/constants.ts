@@ -6,7 +6,8 @@ export const MIN_TRAVEL_DISTANCE_m = 20;
 // VAIMOO tenant that scopes GIRA data in the shared Firestore project and API
 export const GIRA_TENANT = 'P1/EML/EML/';
 
-export const GIRA_MAIS_API_URL = dev ? '/__dev-proxy/gira-mais/api' : 'https://gira-mais.app/api';
+// Native HTTP needs an absolute URL, so in dev the proxy path is resolved against the dev server's origin
+export const GIRA_MAIS_API_URL = dev ? new URL('/__dev-proxy/gira-mais/api', globalThis.location.origin).toString() : 'https://gira-mais.app/api';
 
 export const ROUTING_API_URL = 'https://routing.gira-mais.app';
 export const TILES_URL = 'https://tiles.gira-mais.app';
