@@ -27,7 +27,7 @@ export async function loadSettings() {
 	const distanceLock = raw.distanceLock !== 'false'; // !== 'false' is so that it defaults to true if the key is not set
 	const mockUnlock = raw.mockUnlock !== 'false';
 	const backgroundLocation = raw.backgroundLocation !== 'false';
-	const analytics = raw.analytics !== 'false';
+	const analytics = raw.analytics === 'true';
 	const reportRatings = raw.reportRatings !== 'false';
 	const theme = (raw.theme || 'system') as 'light'|'dark'|'system'|'daylight';
 	const locale = (raw.locale || 'system') as 'pt'|'en'|'system';
